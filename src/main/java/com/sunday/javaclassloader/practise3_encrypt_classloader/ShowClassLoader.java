@@ -1,7 +1,7 @@
 package com.sunday.javaclassloader.practise3_encrypt_classloader;
 
 import com.sunday.javaclassloader.practise2_create_classLoader.MyClassLoader;
-import practise3_encrypt_classloader.EncryptClassLoader;
+
 
 
 import java.lang.reflect.InvocationTargetException;
@@ -25,7 +25,7 @@ public class ShowClassLoader {
         hello.invoke(o,new Object[]{});
 
 
-//        EncryptClassLoader encryptClassLoader=new EncryptClassLoader("EncryptClassLoader");
+        EncryptClassLoader encryptClassLoader=new EncryptClassLoader("EncryptClassLoader");
 //
 //        Class<?> encriptClazz= encryptClassLoader.loadClass("practise2_create_classLoader.MyObject");
 //        System.out.println(encriptClazz);
