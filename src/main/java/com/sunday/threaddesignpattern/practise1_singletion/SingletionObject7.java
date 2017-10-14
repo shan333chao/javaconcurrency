@@ -7,6 +7,9 @@ public class SingletionObject7
 
     /**
      * double check singletion  add  volaite object
+     * 枚举天生支持  懒加载 同是也是单例对象
+     * 同是也是被final修饰的一个类型
+     *
      */
 
 
