@@ -5,6 +5,7 @@ import sun.misc.Unsafe;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -61,10 +62,17 @@ public class SimpleUnsafe {
         byte[] bytes =Files.readAllBytes(Paths.get(classPath));
 
         Class  clazz=unsafe.defineClass(null,bytes,0,bytes.length,null,null);
-        Singleton getInstance =(Singleton) clazz.getMethod("getInstance").invoke(clazz.newInstance(), null);
-        Singleton getInstance2 =(Singleton) clazz.getMethod("getInstance").invoke(clazz.newInstance(), null);
-        System.out.println("singleton1: "+ getInstance.getInstance().hashCode());
-        System.out.println("singleton2: "+ getInstance2.getInstance().hashCode());
+        Field instance = clazz.getDeclaredField("instance");
+
+        instance.setAccessible(true);
+
+        Method medhod = clazz.getDeclaredMethod("getInstance");
+        Method medhod2 = clazz.getDeclaredMethod("getInstance");
+        System.out.println(medhod.getName());
+        System.out.println(medhod2.getName());
+        medhod.invoke(null,new Object[]{});
+        medhod2.invoke(null,new Object[]{});
+
     }
     private static long sizeOf(Object object){
         Unsafe unsafe = getUnsafe();
